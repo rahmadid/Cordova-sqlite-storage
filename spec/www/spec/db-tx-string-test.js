@@ -672,9 +672,10 @@ var mytests = function() {
           });
         }, MYTIMEOUT);
 
-        // TBD NOTE: In case of the default Android database implementation
-        // (Android-sqlite-connector) it is possible to manipulate,
-        // store, and retrieve a text string with 4-octet UTF-8 characters such as emojis.
+        // TBD NOTE: In case of the default Android database access
+        // implementation (Android-sqlite-connector) it is possible to
+        // manipulate, store, and retrieve a text string with 4-octet
+        // UTF-8 characters such as emojis.
         // However HEX manipulations do not work the same as Android/iOS WebKit Web SQL,
         // iOS plugin, or Android plugin with androidDatabaseImplementation : 2 setting.
         // This linkely indicates that such characters are stored differently [incorrectly]
@@ -682,7 +683,7 @@ var mytests = function() {
         // and Android-sqlite-native-driver. ref: litehelpers/Cordova-sqlite-storage#564
 
         it(suiteName + 'Inline emoji string manipulation test: SELECT UPPER("a\\uD83D\\uDE03.") [\\u1F603 SMILING FACE (MOUTH OPEN)]', function(done) {
-          var db = openDatabase("Inline-emoji-hex-test.db", "1.0", "Demo", DEFAULT_SIZE);
+          var db = openDatabase("Inline-emoji-hex-test-1.db", "1.0", "Demo", DEFAULT_SIZE);
           expect(db).toBeDefined();
 
           db.transaction(function(tx) {
@@ -707,7 +708,7 @@ var mytests = function() {
         }, MYTIMEOUT);
 
         it(suiteName + 'Inline emoji HEX test: SELECT HEX("@\\uD83D\\uDE03!") [\\u1F603 SMILING FACE (MOUTH OPEN)] [HEX encoding BUG on Android-sqlite-connector]', function(done) {
-          var db = openDatabase("Inline-emoji-hex-test.db", "1.0", "Demo", DEFAULT_SIZE);
+          var db = openDatabase("Inline-emoji-hex-test-2.db", "1.0", "Demo", DEFAULT_SIZE);
           expect(db).toBeDefined();
 
           db.transaction(function(tx) {
